@@ -1,0 +1,32 @@
+#include <iostream>
+using namespace std;
+
+int size(const string& s) {
+	int i;
+	for (i = 0; s[i] != '\0'; i++) {}
+	return i;
+}
+
+int main()
+{
+	float f;
+	string str, s = "";
+	cin >> f;
+	unsigned int ds = *(unsigned int*)&f;
+	cout << ds << endl;
+	while (ds) {
+		str += ds % 2 + 48;
+		ds /= 2;
+	}
+	if (f < 0)
+		str = '0' + str;
+	else
+		str += '0';
+	cout << str << endl;
+	int si = size(str) - 1;
+	for (int i = si; i >= 0; i--) {
+		s += str[i];
+	}
+	cout << s << endl;
+	return 0;
+}
