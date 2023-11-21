@@ -95,7 +95,19 @@ string mul(string s1, string s2) {
 		if (s1[i] == '1')
 			str = pluss(str, sdvig_v_Levo(s2, s - 1 - i));
 	}
-	return str;
+	bool big = 0;
+	s = str.size();
+	s--;
+	string st = "";
+	for (int i = 0; i < s; i++) {
+		if (str[i] == '1')
+			big = 1;
+		if (big)
+			st += str[i];
+	}
+	if (st == "")
+		st = "0";
+	return st;
 }
 
 int main()
