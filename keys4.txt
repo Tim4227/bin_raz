@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <string>
 using namespace std;
 
@@ -72,21 +72,29 @@ string min(string a, string b) {
 	return m;
 }
 
-string sdvig_v_Levo(string s, int n) {
-	string str = "";
-	int j = 0;
-	for (int i = n; i < s.size(); i++) {
-		str[i] = s[j];
-		j++;
-		if (s.size() - n <= i)
-			str += '0';
+string sdvig_v_Levo(string str, int n) {
+	for (int i = 0; i < n; i++) {
+		str = str + '0';
 	}
 	return str;
 }
 
 string mul(string s1, string s2) {
-	string str = "";
-
+	string str = "0";
+	int s;
+	if (s1.size() < s2.size()) {
+		string swap = s1;
+		s1 = s2;
+		s2 = swap;
+	}
+	s = s1.size();
+	int o = 0;
+	for (int i = s2.size(); i < s; i++)
+		s2 = '0' + s2;
+	for (int i = s - 1; i >= 0; i--) {
+		if (s1[i] == '1')
+			str = pluss(str, sdvig_v_Levo(s2, s - 1 - i));
+	}
 	return str;
 }
 
@@ -94,5 +102,5 @@ int main()
 {
 	string a, b;
 	cin >> a >> b;
-	cout << sdvig_v_Levo(a, stoi(b));
+	cout << mul(a, b);
 }
